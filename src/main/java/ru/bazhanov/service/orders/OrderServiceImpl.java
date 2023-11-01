@@ -1,4 +1,5 @@
 package ru.bazhanov.service.orders;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.bazhanov.dto.OrderDTO;
@@ -7,7 +8,6 @@ import ru.bazhanov.model.Person;
 import ru.bazhanov.model.Tool;
 import ru.bazhanov.repository.OrderRepository;
 import ru.bazhanov.repository.ToolRepository;
-
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;

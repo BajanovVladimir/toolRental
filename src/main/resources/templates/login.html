@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Аренда инструмента</title>
+    <link rel="stylesheet" th:href="@{css/stylesIndex.css}" type="text/css"/>
+</head>
+<body>
+<section class="top">
+    <div class="top_center">
+        <h1>
+            Аренда инструмента
+        </h1>
+    </div>
+</section>
+<section class="center">
+    <div class="registration">
+        <h2>
+            Войдите в приложение
+        </h2>
+        <div th:if="${param.error}">
+            Неверное имя пользователя и(или) пароль.
+        </div>
+        <div th:if="${param.logout}">
+            <div class="alert alert-info">Вход выполнен успешно</div>
+        </div>
+
+        <form th:action="@{/login}" method="post">
+            <div class="input">
+                <input autofocus name="login" placeholder="Имя пользователя" type="text"/>
+            </div>
+            <div class="input">
+                <input type="password" name="password" placeholder="Пароль"/>
+            </div>
+            <div class="input">
+                <input type="submit" value="Войти"/>
+            </div>
+        </form>
+        <div>
+            <a th:href="@{/registration}"> Зарегистрироваться </a>
+        </div>
+    </div>
+</section>
+</body>

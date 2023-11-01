@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Аренда инструмента</title>
+    <link rel="stylesheet" th:href="@{../css/stylesIndex.css}" type="text/css"/>
+</head>
+<body>
+<section class="top">
+    <div class="top_center">
+        <h1>
+            Аренда инструмента
+        </h1>
+    </div>
+</section>
+<section class="center">
+    <div class="registration">
+        <form  th:action="@{/lessor/toolCreatedView}" method="post" th:object="${toolForm}">
+            <div class="input">
+                <input name="name" placeholder="Название"  th:field="*{name}" required/>
+            </div>
+            <div class="input">
+                <textarea name="specifications"  rows="6" th:field="*{specifications}"></textarea>
+            </div>
+            <div class="input">
+                <input name="district" placeholder="Район"  th:field="*{district}" required/>
+            </div>
+            <div class="input">
+                <input name="street" placeholder="Улица"  th:field="*{street}"/>
+            </div>
+            <div class="input">
+                <input type="number" step="0.01" min="0" max="100000"  name="price" placeholder="Цена"  th:field="*{price}" required/>
+                <label>рублей</label>
+            </div>
+            <div class="input">
+                <input id="submitButton" type="submit"  value="Сохранить" />
+                <button><a  th:href="@{/lessor/lessorView}">Выйти</a></button>
+            </div>
+            <div class="input">
+            </div>
+        </form>
+    </div>
+</section>
+</body>

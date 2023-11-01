@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Аренда инструмента</title>
+    <link rel="stylesheet" th:href="@{../css/stylesIndex.css}" type="text/css"/>
+</head>
+<body>
+<section th:replace="fragments/header :: header" />
+<section class="center">
+    <div class="registration">
+        <div class="div_error" th:if="${message}">
+             Инструмент в аренде. Отмените аренду для удаления инструмента!
+        </div>
+        <div class="box">
+            <form th:action="@{/lessor/toolModifyCardView}" method="post">
+                <h2 th:text="${tool.getName()}"></h2>
+                <div class="box">
+                    <div class="input">
+                        <br>
+                        <label>Цена в сутки: </label>
+                        <label th:text="${tool.getPrice()}"></label>
+                        <label> рублей</label>
+                        <br>
+                    </div>
+                    <div>
+                        <br>
+                        <input type="hidden" th:value="${tool.getId()}" name="toolId"/>
+                    </div>
+                    <div class="input">
+                        <button><a  th:href="@{/lessor/lessorView}">Вернуться</a></button>
+                        <input id="submitButton" type="submit"  value="Удалить"/>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+</body>
+</html>

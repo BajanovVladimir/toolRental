@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Аренда инструмента</title>
+</head>
+<body>
+<section class="top" th:fragment="header">
+    <div class="top_box">
+        <div  class="menu_box">
+            <button class="menu">Меню</button>
+            <div class="menu_content">
+                <a th:href="@{/login}"> Cменить пользователя </a>
+                <a th:href="@{/registration}"> Зарегистрироваться </a>
+            </div>
+        </div>
+        <div class="top_center">
+            <h1>
+                Аренда инструмента
+            </h1>
+        </div>
+        <div class="top_box">
+
+        </div>
+    </div>
+</section>
+<body/>

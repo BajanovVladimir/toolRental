@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Аренда инструмента</title>
+    <link rel="stylesheet" th:href="@{../css/stylesIndex.css}" type="text/css"/>
+</head>
+<body>
+<section th:replace="fragments/header :: header" />
+<section class="center">
+    <div class="registration">
+        <form th:action="@{/orderModifyCardView}" method="post">
+            <h2>
+                <label class="h-label"> Ордер №</label>
+                <label class="h-label" th:text="${order.getId()}"></label>
+            </h2>
+            <h2>
+                <label th:if="${order.getStopped()}" class="h-lable">Отменен!</label>
+            </h2>
+            <div class="box">
+                <div class="input">
+                    <h3 th:text="${order.getToolName()}"></h3>
+                </div>
+                <div class="box">
+                    <div class="input">
+                        <br>
+                        <label class="label_field">Цена в сутки: </label>
+                        <label th:text="${order.getToolPrice()}"></label>
+                        <label> рублей</label>
+                        <br>
+                    </div>
+                    <div class="input">
+                        <label class="label_field">Начало аренды: </label>
+                        <label th:text="${order.getStartDate()}"></label>
+                    </div>
+                    <div class="input">
+                        <label class="label_field">Окончание аренды: </label>
+                        <label th:text="${order.getStopDate()}"></label>
+                    </div>
+                    <div>
+                        <input type="hidden" th:value="${order.getId()}" name="orderId"/>
+                    </div>
+                    <div class="input">
+                        <button sec:authorize="hasRole('LESSOR')"><a  th:href="@{/lessor/lessorView}">Вернуться</a></button>
+                        <button sec:authorize="hasRole('RENTER')"><a  th:href="@{/renter/renterView}">Вернуться</a></button>
+                        <input th:if="${not order.getStopped()}"  id="submitButton" type="submit"  value="Отменить ордер"/>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+</body>
+</html>

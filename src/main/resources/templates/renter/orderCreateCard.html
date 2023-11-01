@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Аренда инструмента</title>
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <link rel="stylesheet" th:href="@{../css/stylesIndex.css}" type="text/css"/>
+</head>
+<body>
+<section th:replace="fragments/header :: header" />
+<section class="center">
+    <div class="registration">
+        <div th:if="${message}">
+            Инструмент занят в эти даты. Измените даты аренды!
+        </div>
+        <form  id="formOrderCreate" onsubmit="return submitFunction(event)" th:action="@{/renter/orderCreateCard}" method="post"  th:object="${order}">
+            <h2 th:text="${tool.getName()}"></h2>
+            <div class="box">
+                <div class="input">
+                    <br>
+                    <label>Цена в сутки: </label>
+                    <label th:text="${tool.getPrice()}"></label>
+                    <label> рублей</label>
+                    <br>
+                </div>
+                <div>
+                    <br>
+                    <label>Владелец: </label>
+                    <label th:text="${tool.getPersonName()}"></label>
+                    <br>
+                </div>
+                <div>
+                    <br>
+                    <div class="div_error" id="error"> </div>
+                    <input  type="hidden" th:value="${tool.getId()}" name="toolId"/>
+                    <input  id="startDate" type="date"    th:field="*{startDate}" required/>
+                    <input id="stopDate" type="date"    th:field="*{stopDate}" required/>
+                    <br>
+                </div>
+                <div class="input">
+                    <button><a  th:href="@{/renter/toolSearchView}">Вернуться к поиску</a></button>
+                    <input id="submitButton" type="submit" value="Арендовать" />
+                </div>
+                <div class="input">
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+<script th:inline="javascript" type="text/javascript">
+           function submitFunction(e){
+              var startDate =new Date($("#startDate").val());
+              var stopDate = new Date($("#stopDate").val());
+              var nowDate = new Date().setHours(0,0,0,0);
+              if(startDate<=nowDate){
+                $("#error").text("Дата начала не может быть раньше текущей даты!");
+              } else{
+                   if(startDate<stopDate){
+                      return;
+                   } else {
+                        $("#error").text("выбраны ошибочные даты!");
+                     }
+                }
+             e.preventDefault();
+           }
+</script>
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Аренда инструмента</title>
+    <link rel="stylesheet" th:href="@{../css/stylesIndex.css}" type="text/css"/>
+</head>
+<body>
+<section th:replace="fragments/header :: header" />
+<section class="center">
+    <div class="user_box">
+        <div class="box">
+            <table >
+                <caption>
+                    <h2>Инструмент</h2>
+                </caption>
+                <thead>
+                <tr>
+                    <th>
+                        Инструмент
+                    </th>
+                    <th>
+                        Цена за сутки
+                    </th>
+                </tr>
+                </thead>
+                <tbody th:each="tool:${tools}">
+                <tr>
+                    <td>
+                        <a class="change-text" th:href="@{/lessor/toolModifyCardView(toolId=${tool.getId()})}"><label th:text="${tool.getName()}"/> </a>
+                    </td>
+                    <td>
+                        <label th:text="${tool.getPrice()}"/>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="input">
+                <button><a th:href="toolCreatedView">Добавить</a></button>
+            </div>
+        </div>
+        <div class="box">
+            <table >
+                <caption>
+                    <h2>Ордера текущие</h2>
+                </caption>
+                <thead>
+                <tr>
+                    <th>
+                        Ордер
+                    </th>
+                    <th>
+                        Инструмент
+                    </th>
+                    <th>
+                        Арендатор
+                    </th>
+                </tr>
+                </thead>
+                <tbody th:each="order:${orders}">
+                <tr>
+                    <td>
+                        <a class="change-text" th:href="@{/orderModifyCardView(orderId=${order.getId()})}"><label th:text="${order.getId()}"></label> </a>
+                    </td>
+                    <td>
+                        <a class="change-text" th:href="@{/orderModifyCardView(orderId=${order.getId()})}"> <label th:text="${order.getToolName()}"></label> </a>
+                    </td>
+                    <td>
+                        <a class="change-text" th:href="@{/orderModifyCardView(orderId=${order.getId()})}"> <label th:text="${order.getPersonName()}"></label> </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="box">
+            <table >
+                <caption>
+                    <h2>Ордера отмененные</h2>
+                </caption>
+                <thead>
+                <tr>
+                    <th>
+                        Ордер
+                    </th>
+                    <th>
+                        Инструмент
+                    </th>
+                    <th>
+                        Арендатор
+                    </th>
+                </tr>
+                </thead>
+                <tbody th:each="order:${stoppedOrders}">
+                <tr>
+                    <td>
+                        <a class="change-text" th:href="@{/orderModifyCardView(orderId=${order.getId()})}"><label th:text="${order.getId()}"></label> </a>
+                    </td>
+                    <td>
+                        <a class="change-text" th:href="@{/orderModifyCardView(orderId=${order.getId()})}"> <label th:text="${order.getToolName()}"></label> </a>
+                    </td>
+                    <td>
+                        <a class="change-text" th:href="@{/orderModifyCardView(orderId=${order.getId()})}"> <label th:text="${order.getPersonName()}"></label> </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+</body>
+</html>

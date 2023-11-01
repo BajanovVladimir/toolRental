@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Аренда инстркмента</title>
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <link rel="stylesheet" th:href="@{../css/stylesIndex.css}" type="text/css"/>
+</head>
+<body>
+</section>
+<section th:replace="fragments/header :: header" />
+<section class="center">
+    <div class="user_box">
+        <div class="box">
+            <form id="formToolSearch" onsubmit="return submitFunction(event)" th:action="@{/renter/toolSearchView}" method="post">
+                <h3>Поиск</h3>
+                <div class="div_error" id="error"> </div>
+                <div class="field">
+                    <label class="label_field">Начало аренды:</label>
+                    <input id="startDate" type="date"  th:value="${startDate}"  name="startDate" required/>
+                </div>
+                <div class="field">
+                    <label class="label_field">Окончание аренды:</label>
+                    <input id="stopDate" type="date"  th:value="${stopDate}" name="stopDate" required/>
+                </div>
+                <div class="field">
+                    <label class="label_field">Инструмент:</label>
+                    <input name="name" placeholder="название" th:value="${name}"/>
+                </div>
+                <div class="field">
+                    <label class="label_field">Район:</label>
+                    <input name="district" placeholder="район" th:value="${district}"/>
+                </div>
+                <div class="field">
+                    <label class="label_field">Минимальная цена:</label>
+                    <input name="priceMin" placeholder="мин. цена" th:value="${priceMin}"/>
+                </div>
+                <div class="field">
+                    <label class="label_field">Максимальная цена:</label>
+                    <input name="priceMax" placeholder="макс. цена" th:value="${priceMax}"/>
+                </div>
+                <div class="input">
+                    <button><a  th:href="@{/renter/renterView}">Вернуться</a></button>
+                    <input  type="submit"  value="Найти" />
+                </div>
+            </form>
+        </div>
+        <div class="box">
+            <table>
+                <thead>
+                <tr>
+                    <th>
+                        Инструмент
+                    </th>
+                    <th>
+                        Цена за сутки
+                    </th>
+                </tr>
+                </thead>
+                <tbody th:each="tool:${tools}">
+                <tr>
+                    <td>
+                        <a class="change-text" th:href="@{/renter/orderCreateCard(toolId=${tool.getId()})}"><label th:text="${tool.getName()}"></label> </a>
+                    </td>
+                    <td>
+                        <label th:text="${tool.getPrice()}"></label>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+<script th:inline="javascript" type="text/javascript">
+     function submitFunction(e){
+              var startDate =new Date($("#startDate").val());
+              var stopDate = new Date($("#stopDate").val());
+              var nowDate = new Date().setHours(0,0,0,0);
+              if(startDate<nowDate){
+                $("#error").text("Дата начала не может быть раньше текущей даты!");
+              } else{
+                   if(startDate<=stopDate){
+                      return;
+                   } else {
+                        $("#error").text("выбраны ошибочные даты!");
+                     }
+                }
+             e.preventDefault();
+           }
+</script>
+</body>
+</html>

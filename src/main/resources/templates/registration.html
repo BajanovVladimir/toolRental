@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Аренда инструмента</title>
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <link rel="stylesheet" th:href="@{css/stylesIndex.css}" type="text/css"/>
+</head>
+<body>
+<section class="top">
+    <div class="top_center">
+        <h1>
+            Аренда инструмента
+        </h1>
+    </div>
+</section>
+<section class="center">
+    <div class="registration">
+        <h2>
+            Зарегистрируйтесь
+        </h2>
+        <div class="div_error" th:if="${error}"> </div>
+        <form onsubmit="return submitFunction(event)" th:action="@{/registration}" method="post" th:object="${userForm}" >
+            <div class="input">
+                <input type="checkbox" name="role" th:chacked="*{role}"/> Зарегистрироваться как арендодатель
+            </div>
+            <div class="input">
+                <div class="div_error" id="nameError"> </div>
+                <input id="name_input" name="name" placeholder="Имя "  th:field="*{name}" required/>
+            </div>
+
+            <div class="input">
+                <div class="div_error" id="phoneError"> </div>
+                <input id="phone_input" name="phone" placeholder="Номер телефона"  th:field="*{phone}" required/>
+            </div>
+            <div class="input">
+                <input name="login" placeholder="Имя пользователя"  th:field="*{login}" required/>
+            </div>
+            <div class="input">
+                <input type="password" id="password" name="password" placeholder="Пароль"  th:field="*{password}" required/>
+            </div>
+            <div class="input">
+                <input type="password" id="confirm_password" name="passwordRepeat" placeholder="Повторно пароль"/>
+            </div>
+            <div class="input">
+                <input id="submitButton" type="submit" disabled value="Зарегистрироваться" />
+            </div>
+           </form>
+        <div class="input">
+            <a th:href="@{/login}"> Войти </a>
+        </div>
+    </div>
+        <script th:inline="javascript" type="text/javascript">
+            $("#confirm_password").on("keyup", function() {
+              var value_input1 = $("#password").val();
+              var value_input2 = $("#confirm_password").val();
+              if(value_input1 != value_input2) {
+                  $("#submitButton").attr("disabled",true);
+                  $(".error").html("Пароли не совпадают!");
+                  $("#submit").attr("disabled", "disabled");
+                } else {
+                      $("#submitButton").attr("disabled",false);
+                      $("#submit").removeAttr("disabled");
+                      $(".error").html("");
+                    }
+            });
+            function ValidPhone(){
+              var  phonePattern = /^[\d\+][\d\(\)\ -]{4,10}\d$/;
+              var  phone = $("#phone_input").val();
+              var valid = phonePattern.test(phone);
+              if(valid){
+               $("#phoneError").text("");
+              }else{
+                $("#phoneError").text(" Не корректный телефон");
+              }
+              return valid;
+            }
+
+            function ValidPersonName(){
+              var namePattern = /^[а-яА-ЯёЁa-zA-Z ]+$/;
+              var name = $("#name_input").val();
+              var valid = namePattern.test(name);
+              if(valid){
+                $("#nameError").text("");
+              } else {
+                    $("#nameError").text("Не корректное имя");
+                }
+              return valid;
+            }
+
+            function submitFunction(e){
+               if(ValidPhone() &&  ValidPersonName()){
+               return;
+               }
+               e.preventDefault();
+            }
+        </script>
+</section>
+</body>

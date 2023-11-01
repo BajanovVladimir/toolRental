@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Аренда инструмента</title>
+    <link rel="stylesheet" th:href="@{css/stylesIndex.css}" type="text/css"/>
+</head>
+<body>
+<section th:replace="fragments/header :: header" />
+<section class="center">
+    <div class="registration">
+        <h2>
+            Рады приветствовать Вас,  <p th:text="${personName}"></p>
+        </h2>
+        <p sec:authorize="hasRole('LESSOR')">
+            <a th:href="@{/lessor/lessorView}"> Сдать инструмент </a>
+        </p>
+        <p sec:authorize="hasRole('RENTER')">
+          <a th:href="@{/renter/renterView}"> Найти инструмент </a>
+        <p/>
+    </div>
+</section>
+<section class="bottom">
+    <div class="bottom_box"> Текущее время: [[${#dates.createNow()}]] </div>
+</section>
+</body>
+</html>

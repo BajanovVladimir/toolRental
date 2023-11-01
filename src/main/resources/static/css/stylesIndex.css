@@ -1,0 +1,170 @@
+:root{
+   --h_color:#af2121;
+   --error_color:red;
+   --table_line_color:grey;
+   --background_color:rgb(0,191,255,0.8);
+}
+
+body{
+   background-image:url(../img/tools_rent.jpg);
+}
+.top{
+   background:var(--background_color)
+}
+.top_box{
+   display: flex;
+   flex-direction: row;
+   justify-content: center;
+}
+
+.top_center{
+    width:100%;
+    text-align: center;
+}
+.menu_box {
+  padding:10px;
+  position:absolute;
+  left:0;
+  top:0;
+  display: inline-block;
+}
+.menu {
+  background-color:rgb(0,191,255,0.1);
+  color: black;
+  padding: 16px;
+  font-size: 12px;
+  border: none;
+}
+.menu_content {
+  display: none;
+  position: absolute;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+.menu_content a {
+  font-size:12px;
+  color: black ;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+.menu_content a:hover {background-color: #ddd;}
+.menu_box:hover .menu_content {display: block;}
+.menu_box:hover .menu_box{background-color: #af2121;}
+h1{
+   font-size: 42px;
+   color:var(--h_color);
+}
+h2{
+  text-align:center;
+  color:var(--h_color);
+}
+h3{
+text-align:center;
+}
+.bottom{
+   margin-top:10px;
+}
+h4{
+   color:var(--h_color);
+}
+.center{
+   margin-top:20px;
+   display: flex;
+   flex-direction: row;
+   justify-content: center;
+}
+.registration{
+   width:400px;
+   height:auto;
+   background:var(--background_color);
+   text-align: center;
+   justify-content: center;
+   padding:20px;
+}
+.user_box{
+    margin-top:20px;
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+    height:auto;
+    background:var(--background_color);
+    padding:50px;
+}
+.box{
+    justify-content: center;
+    padding:10px;
+}
+.bottom{
+   display: flex;
+   flex-direction: row;
+   justify-content: center;
+}
+.bottom_box{
+   margin-top:100px;
+}
+.input{
+   margin-top:10px;
+}
+
+.panel{
+    width:30%;
+    height:100%
+}
+a {
+   color: #000000;
+   text-decoration:none;
+}
+.come_in{
+   margin-top:5px;
+}
+button_box {
+   margin-top:20px;
+   display: flex;
+   flex-direction: row;
+   justify-content: center;
+}
+table{
+   border-collapse: collapse;
+   border: 2px solid var(--table_line_color);
+}
+th {
+   border: 2px solid var(--table_line_color);
+}
+ td {
+   border: 1px solid var(--table_line_color);
+}
+
+.field{
+   text-align:right;
+   padding-bottom:5px;
+}
+.label_field{
+   float:left;
+}
+
+
+ .change-text{
+    color:black;
+ }
+
+ .change-text:hover {
+   color:#7d7f7d;
+ }
+
+ label{
+   margin-right:10px;
+ }
+
+ .div_error{
+     color:var(--error_color);
+ }
+
+ @media (max-width:660px){
+    .user_box{
+          float: none;
+          margin: 0 auto 15px;
+          display: table;
+    }
+ }

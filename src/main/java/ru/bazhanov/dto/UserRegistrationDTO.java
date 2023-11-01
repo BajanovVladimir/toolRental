@@ -1,4 +1,4 @@
-package ru.bazhanov;
+package ru.bazhanov.dto;
 
 public class UserRegistrationDTO {
     String name;

@@ -1,7 +1,7 @@
 package ru.bazhanov.service.user;
 
 import org.springframework.security.core.userdetails.UserDetailsService;
-import ru.bazhanov.UserRegistrationDTO;
+import ru.bazhanov.dto.UserRegistrationDTO;
 import ru.bazhanov.model.User;
 
 import java.util.List;

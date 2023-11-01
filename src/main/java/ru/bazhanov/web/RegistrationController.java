@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import ru.bazhanov.UserRegistrationDTO;
+import ru.bazhanov.dto.UserRegistrationDTO;
 import ru.bazhanov.service.user.UserService;
 
 

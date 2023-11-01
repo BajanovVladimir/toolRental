@@ -5,7 +5,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import ru.bazhanov.UserRegistrationDTO;
+import ru.bazhanov.dto.UserRegistrationDTO;
 import ru.bazhanov.model.Person;
 import ru.bazhanov.model.Role;
 import ru.bazhanov.model.User;

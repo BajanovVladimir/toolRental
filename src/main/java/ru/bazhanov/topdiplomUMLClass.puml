@@ -1,0 +1,115 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class User{
+int id
+String login
+String password
+Collection<Role> roles
+Collection<? extends GrantedAuthority> getAuthorities()
+String getPassword()
+String getUsername()
+boolean isAccountNonExpired()
+boolean isAccountNonLocked()
+boolean isEnabled()
+String getLogin()
+void setLogin
+Collection<Role> getRoles()
+int getId()
+}
+
+interface UserDetails{
+Collection<? extends GrantedAuthority> getAuthorities()
+String getPassword()
+String getUsername()
+boolean isAccountNonExpired()
+boolean isAccountNonLocked()
+boolean isCredentialsNonExpired()
+boolean isEnabled()
+}
+
+class Role{
+static final String ROLE_RENTER = "RENTER"
+static final String ROLE_LESSOR = "LESSOR"
+int id
+String name
+Set<User> user
+}
+interface GrantedAuthority{
+String getAuthority()
+}
+
+class Address{
+ int id
+ String district
+ String street
+ setDistrict()
+ getDistrict()
+ setStreet()
+ getStreet()
+ getId()
+}
+
+class Person{
+int id
+String name
+String phoneNumber
+User user
+}
+
+class Tool{
+int id
+Person person
+String name
+String specifications
+Address address
+Double price
+List<Order> orders
+int getId()
+Person getPerson()
+String getPersonName()
+void setPerson(Person person)
+String getName()
+void setName(String name)
+double getPrice()
+void setPrice(double price)
+String getDistrict()
+List<Order> getOrders()
+boolean equals(Object o)
+int hashCode()
+}
+
+class Order{
+int id
+Tool tool
+Person person
+LocalDate startDate
+LocalDate stopDate
+Boolean stopped
+Boolean completed
+int getId()
+LocalDate getStartDate()
+void setStartDate(LocalDate startDate)
+LocalDate getStopDate()
+void setStopDate(LocalDate stopDate)
+String getToolName()
+Tool getTool()
+Double getToolPrice()
+Boolean getStopped()
+void setStopped(Boolean stopped)
+Boolean getCompleted()
+void setCompleted(Boolean completed)
+String getPersonName()
+}
+
+User <-> Role
+User -> Person
+Person -> Tool
+Address -> Tool
+Person -> Order
+Tool <-> Order
+Role ..|> GrantedAuthority
+User ..|> UserDetails
+
+
+@enduml
